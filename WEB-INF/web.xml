@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1"
+  metadata-complete="true">
+
+    <description>
+	ID webapp
+    </description>
+    <display-name>ID webapp</display-name>
+
+	 <welcome-file-list>
+        <welcome-file>/secure/menu.jsp</welcome-file>
+    </welcome-file-list>
+
+   	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Personal GNT</web-resource-name>
+			<url-pattern>/secure/menu.jsp</url-pattern>
+			<url-pattern>/secure/nominas/gestion_trabajadores.jsp</url-pattern>
+			<url-pattern>/secure/nominas/gestion_nominas.jsp</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>GNT</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+    
+    <security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Role A puede ir a varios sitios</web-resource-name>
+	        <url-pattern>/secure/menu.jsp</url-pattern>
+			<url-pattern>/secure/compras/gestion_proveedores.jsp</url-pattern>
+			<url-pattern>/secure/nominas/gestion_trabajadores.jsp</url-pattern>
+			<url-pattern>/secure/ventas/gestion_presupuestos.jsp</url-pattern>
+            <http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>A</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+    <security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Role AC</web-resource-name>
+			<url-pattern>/secure/menu.jsp</url-pattern>
+			<url-pattern>/secure/compras/autorizar_compras.jsp</url-pattern>
+            <http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>AC</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Compras GCP</web-resource-name>
+			<url-pattern>/secure/menu.jsp</url-pattern>
+			<url-pattern>/secure/compras/gestion_compras.jsp</url-pattern>
+			<url-pattern>/secure/compras/gestion_proveedores.jsp</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>GCP</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Ventas GCFP</web-resource-name>
+			<url-pattern>/secure/menu.jsp</url-pattern>
+			<url-pattern>/secure/ventas/gestion_clientes.jsp</url-pattern>
+			<url-pattern>/secure/ventas/gestion_facturas.jsp</url-pattern>
+			<url-pattern>/secure/ventas/gestion_presupuestos.jsp</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>GCFP</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+		<security-role>
+		<role-name>AC</role-name>
+	</security-role>
+	<security-role>
+		<role-name>GCP</role-name>
+	</security-role>
+	<security-role>
+		<role-name>A</role-name>
+	</security-role>
+	<security-role>
+		<role-name>GNT</role-name>
+	</security-role>
+	<security-role>
+		<role-name>GCFP</role-name>
+	</security-role>
+
+		
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.jsp</form-login-page>
+			<form-error-page>/error.jsp</form-error-page>
+		</form-login-config>
+	</login-config>
+
+  
+</web-app>
